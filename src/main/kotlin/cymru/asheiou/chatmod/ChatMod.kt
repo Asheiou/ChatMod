@@ -1,0 +1,14 @@
+package cymru.asheiou.chatmod
+
+import org.bukkit.plugin.java.JavaPlugin
+
+class ChatMod : JavaPlugin() {
+
+  override fun onEnable() {
+    // Plugin startup logic
+  }
+
+  override fun onDisable() {
+    // Plugin shutdown logic
+  }
+}
