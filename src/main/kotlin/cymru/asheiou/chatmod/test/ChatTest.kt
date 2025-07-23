@@ -10,7 +10,7 @@ abstract class ChatTest(val event: AsyncChatEvent, val permission: String? = nul
   }
 
   val hasPermission: Boolean = run {
-    permission ?: true
+    permission ?: false
     event.player.hasPermission("chatmod.exempt.${permission}") || event.player.hasPermission("chatmod.exempt")
   }
 }
