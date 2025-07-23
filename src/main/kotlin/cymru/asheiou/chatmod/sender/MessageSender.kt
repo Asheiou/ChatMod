@@ -3,7 +3,6 @@ package cymru.asheiou.chatmod.sender
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.event.Cancellable
-import org.bukkit.event.Event
 
 class MessageSender {
   companion object {
