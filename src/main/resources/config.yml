@@ -1,3 +1,4 @@
 tests:
   caps-threshold: 80
+  caps-minimum-length: 5
   spam-cooldown: 3

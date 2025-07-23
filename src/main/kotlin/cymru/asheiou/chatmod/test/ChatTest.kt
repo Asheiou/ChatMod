@@ -5,7 +5,7 @@ import io.papermc.paper.event.player.AsyncChatEvent
 abstract class ChatTest(val event: AsyncChatEvent, val permission: String? = null) {
   abstract fun test(): Boolean
 
-   val message: String = run {
+   val messagePrepped: String = run {
     event.message().toString().replace(" ", "")
   }
 
