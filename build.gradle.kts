@@ -15,11 +15,15 @@ repositories {
   maven("https://oss.sonatype.org/content/groups/public/") {
     name = "sonatype"
   }
+  maven("https://repo.asheiou.cymru/releases/") {
+    name = "asheiou"
+  }
 }
 
 dependencies {
   compileOnly("io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT")
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+  implementation("cymru.asheiou:configmanager:1.2.1")
 }
 
 tasks {

@@ -1,0 +1,3 @@
+tests:
+  caps-threshold: 80
+  spam-cooldown: 3
