@@ -1,4 +1,5 @@
 tests:
   caps-threshold: 80
   caps-minimum-length: 5
+  letter-spam-threshold: 6
   spam-cooldown: 3

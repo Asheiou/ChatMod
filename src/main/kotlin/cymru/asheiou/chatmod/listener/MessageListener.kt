@@ -2,6 +2,7 @@ package cymru.asheiou.chatmod.listener
 
 import cymru.asheiou.chatmod.sender.MessageSender
 import cymru.asheiou.chatmod.test.CapsLockTest
+import cymru.asheiou.chatmod.test.LetterSpamTest
 import cymru.asheiou.chatmod.test.SpamTest
 import io.papermc.paper.event.player.AsyncChatEvent
 import org.bukkit.event.EventHandler
@@ -18,5 +19,7 @@ class MessageListener(val plugin: JavaPlugin) : Listener {
     if (SpamTest(plugin, event, "spam").test())
       MessageSender.sendAndCancelEvent(event,event.player,
         "Too many messages in a short time! Wait a few seconds and try again.").also { return }
+    if (LetterSpamTest(plugin, event, "spam").test())
+      MessageSender.sendAndCancelEvent(event,event.player, "Too many repeated letters!").also { return }
   }
 }
