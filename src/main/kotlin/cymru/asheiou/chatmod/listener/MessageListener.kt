@@ -11,15 +11,16 @@ import org.bukkit.event.Listener
 import org.bukkit.plugin.java.JavaPlugin
 
 class MessageListener(val plugin: JavaPlugin) : Listener {
+
   @EventHandler(priority = EventPriority.HIGH)
   fun onAsyncChatEvent(event: AsyncChatEvent) {
     if (event.isCancelled) return
-    if (CapsLockTest(plugin, event, "caps").test())
-      MessageSender.sendAndCancelEvent(event,event.player, "Too many caps!").also { return }
-    if (SpamTest(plugin, event, "spam").test())
-      MessageSender.sendAndCancelEvent(event,event.player,
-        "Too many messages in a short time! Wait a few seconds and try again.").also { return }
-    if (LetterSpamTest(plugin, event, "spam").test())
-      MessageSender.sendAndCancelEvent(event,event.player, "Too many repeated letters!").also { return }
+    mapOf(
+      CapsLockTest(plugin, event, "caps") to "Too many caps!",
+      SpamTest(plugin, event, "spam") to "Too many messages in a short time! Please try again in a few seconds.",
+      LetterSpamTest(plugin, event, "letterspam") to "Too many repeated letters!"
+    ).forEach {
+      if (it.key.test()) MessageSender.sendAndCancelEvent(event, event.player, it.value)
+    }
   }
 }

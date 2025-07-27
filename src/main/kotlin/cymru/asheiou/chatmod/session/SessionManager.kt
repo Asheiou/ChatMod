@@ -1,21 +1,15 @@
 package cymru.asheiou.chatmod.session
 
-import java.util.UUID
+import java.util.*
 
-class SessionManager {
-  companion object {
-    var activeSessions: MutableSet<Session> = mutableSetOf()
+object SessionManager {
+  var activeSessions: MutableSet<Session> = mutableSetOf()
 
-    fun create(uuid: UUID) = activeSessions.add(Session(uuid))
+  fun create(uuid: UUID) = activeSessions.add(Session(uuid))
 
-    fun get(uuid: UUID) = activeSessions.firstOrNull { it.uuid == uuid } ?: Session(uuid)
+  fun get(uuid: UUID) = activeSessions.firstOrNull { it.uuid == uuid } ?: Session(uuid)
 
-    fun remove(uuid: UUID) : Boolean {
-      get(uuid)?.let {
-        activeSessions.remove(it)
-        return true
-      }
-      return false
-    }
+  fun remove(uuid: UUID): Boolean {
+    return activeSessions.remove(get(uuid))
   }
 }

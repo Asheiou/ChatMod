@@ -1,6 +1,7 @@
 package cymru.asheiou.chatmod
 
 import cymru.asheiou.chatmod.listener.MessageListener
+import cymru.asheiou.chatmod.listener.SessionListener
 import cymru.asheiou.configmanager.ConfigManager
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
@@ -17,7 +18,9 @@ class ChatMod : JavaPlugin() {
               if (changes[0] != -1) "${changes[0]} line(s) added, ${changes[1]} line(s) removed."
               else "File not found or unreadable. Reset it."
     )
-    Bukkit.getPluginManager().registerEvents(MessageListener(this), this)
+    val pm = Bukkit.getPluginManager()
+    pm.registerEvents(MessageListener(this), this)
+    pm.registerEvents(SessionListener(), this)
     logger.info("Load complete!")
   }
 
