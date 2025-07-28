@@ -1,6 +1,7 @@
 package cymru.asheiou.chatmod
 
 import cymru.asheiou.chatmod.accessor.BlockedWordsAccessor
+import cymru.asheiou.chatmod.command.chatmod.ChatModCommandExecutor
 import cymru.asheiou.chatmod.listener.MessageListener
 import cymru.asheiou.chatmod.listener.SessionListener
 import cymru.asheiou.configmanager.ConfigManager
@@ -8,11 +9,10 @@ import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 
 class ChatMod : JavaPlugin() {
-  lateinit var configManager: ConfigManager
+  val configManager = ConfigManager(this, false)
 
   override fun onEnable() {
     logger.info("Load started.")
-    configManager = ConfigManager(this, false)
     BlockedWordsAccessor.saveDefaultConfig()
     val changes = configManager.loadConfig()
     logger.info(
@@ -23,6 +23,7 @@ class ChatMod : JavaPlugin() {
     val pm = Bukkit.getPluginManager()
     pm.registerEvents(MessageListener(this), this)
     pm.registerEvents(SessionListener(), this)
+    getCommand("chatmod")?.setExecutor(ChatModCommandExecutor(this))
     logger.info("Load complete!")
   }
 

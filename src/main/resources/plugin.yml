@@ -2,3 +2,19 @@ name: ChatMod
 version: '1.0-SNAPSHOT'
 main: cymru.asheiou.chatmod.ChatMod
 api-version: '1.21'
+commands:
+  chatmod:
+    permission: chatmod.admin
+    description: Main plugin command
+    usage: /<command> [reload]
+permissions:
+  chatmod.admin:
+    default: op
+  chatmod.exempt:
+    default: false
+  chatmod.exempt.caps:
+    default: false
+  chatmod.exempt.spam:
+    default: false
+  chatmod.exempt.letterspam:
+    default: false
