@@ -8,7 +8,7 @@ class WordTest(event: AsyncChatEvent) : ChatTest(event) {
   override fun test(): Boolean {
     blockedWords.forEach {
       val regex = it.toRegex()
-      if (regex.matches(messagePrepped)) return true
+      if (regex.containsMatchIn(messagePrepped)) return true
     }
     return false
   }

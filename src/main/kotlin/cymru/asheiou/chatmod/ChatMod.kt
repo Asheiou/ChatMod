@@ -1,5 +1,6 @@
 package cymru.asheiou.chatmod
 
+import cymru.asheiou.chatmod.accessor.BlockedWordsAccessor
 import cymru.asheiou.chatmod.listener.MessageListener
 import cymru.asheiou.chatmod.listener.SessionListener
 import cymru.asheiou.configmanager.ConfigManager
@@ -12,6 +13,7 @@ class ChatMod : JavaPlugin() {
   override fun onEnable() {
     logger.info("Load started.")
     configManager = ConfigManager(this, false)
+    BlockedWordsAccessor.saveDefaultConfig()
     val changes = configManager.loadConfig()
     logger.info(
       "Config loaded! " +
