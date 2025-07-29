@@ -1,6 +1,5 @@
 package cymru.asheiou.chatmod.accessor
 
-import cymru.asheiou.chatmod.ChatMod
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
@@ -17,8 +16,11 @@ object BlockedWordsAccessor {
       if (config == null) reloadConfig()
       return config
     }
-    set(value) { config = value }
-  var plugin: JavaPlugin = JavaPlugin.getProvidingPlugin(ChatMod::class.java)
+    set(value) {
+      config = value
+    }
+
+  lateinit var plugin: JavaPlugin
 
   fun reloadConfig() {
     if (configFile == null) {

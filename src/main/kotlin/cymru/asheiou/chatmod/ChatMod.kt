@@ -8,11 +8,12 @@ import cymru.asheiou.configmanager.ConfigManager
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 
-class ChatMod : JavaPlugin() {
+open class ChatMod : JavaPlugin() {
   val configManager = ConfigManager(this, false)
 
   override fun onEnable() {
     logger.info("Load started.")
+    BlockedWordsAccessor.plugin = this
     BlockedWordsAccessor.saveDefaultConfig()
     val changes = configManager.loadConfig()
     logger.info(
