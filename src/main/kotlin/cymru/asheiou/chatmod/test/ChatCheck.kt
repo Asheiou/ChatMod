@@ -11,7 +11,7 @@ abstract class ChatCheck(val event: AsyncChatEvent, val permission: String? = nu
     PlainTextComponentSerializer.plainText().serialize(event.message()).replace(" ", "")
   }
 
-  val hasPermission : Boolean = run {
+  val hasPermission: Boolean by lazy {
     permission ?: throw NoPermissionException()
     event.player.hasPermission("chatmod.exempt.${permission}") || event.player.hasPermission("chatmod.exempt")
   }
