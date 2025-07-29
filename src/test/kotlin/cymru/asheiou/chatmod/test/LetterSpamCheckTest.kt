@@ -2,7 +2,6 @@ package cymru.asheiou.chatmod.test
 
 import cymru.asheiou.chatmod.ChatMod
 import cymru.asheiou.chatmod.EventCreator
-import jdk.jfr.Event
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
