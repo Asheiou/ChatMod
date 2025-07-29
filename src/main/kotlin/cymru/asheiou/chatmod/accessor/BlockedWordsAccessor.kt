@@ -1,5 +1,7 @@
 package cymru.asheiou.chatmod.accessor
 
+import cymru.asheiou.chatmod.placeholder.NullFileConfiguration
+import cymru.asheiou.chatmod.placeholder.NullPlugin
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
@@ -11,18 +13,21 @@ import java.util.*
 
 object BlockedWordsAccessor {
   var configFile: File? = null
-  var configInternal: FileConfiguration? = null
 
-  var config: FileConfiguration?
+  var config: FileConfiguration = NullFileConfiguration
     get() {
-      if (configInternal == null) reloadConfig()
-      return configInternal
-    }
-    set(value) {
-      configInternal = value
+      if (config is NullFileConfiguration) reloadConfig()
+      return field
     }
 
-  lateinit var plugin: JavaPlugin
+  var plugin: JavaPlugin = NullPlugin
+    get() {
+      if (plugin == NullPlugin) {
+        throw UninitializedPropertyAccessException()
+      } else {
+        return field
+      }
+    }
 
   fun reloadConfig() {
     if (configFile == null) {
@@ -37,7 +42,7 @@ object BlockedWordsAccessor {
     }
     if (defConfigStream != null) {
       val defConfig = YamlConfiguration.loadConfiguration(defConfigStream)
-      config!!.setDefaults(defConfig)
+      config.setDefaults(defConfig)
     }
   }
 
