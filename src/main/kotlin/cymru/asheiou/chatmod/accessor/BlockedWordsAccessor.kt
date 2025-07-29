@@ -1,7 +1,7 @@
 package cymru.asheiou.chatmod.accessor
 
+import cymru.asheiou.chatmod.exception.NotInitializedException
 import cymru.asheiou.chatmod.placeholder.NullFileConfiguration
-import cymru.asheiou.chatmod.placeholder.NullPlugin
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
@@ -20,16 +20,13 @@ object BlockedWordsAccessor {
       return field
     }
 
-  var plugin: JavaPlugin = NullPlugin
+  var plugin: JavaPlugin? = null
     get() {
-      if (plugin == NullPlugin) {
-        throw UninitializedPropertyAccessException()
-      } else {
-        return field
-      }
+      return field ?: throw NotInitializedException()
     }
 
   fun reloadConfig() {
+    val plugin = this.plugin!!
     if (configFile == null) {
       configFile = File(plugin.dataFolder, "blocked-words.yml")
     }
@@ -47,6 +44,7 @@ object BlockedWordsAccessor {
   }
 
   fun saveDefaultConfig() {
+    val plugin = this.plugin!!
     if (configFile == null) {
       configFile = File(plugin.dataFolder, "blocked-words.yml")
     }

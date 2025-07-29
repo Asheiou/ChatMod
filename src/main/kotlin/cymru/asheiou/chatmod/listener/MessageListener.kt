@@ -1,6 +1,7 @@
 package cymru.asheiou.chatmod.listener
 
 import cymru.asheiou.chatmod.sender.MessageSender
+import cymru.asheiou.chatmod.session.SessionManager
 import cymru.asheiou.chatmod.test.*
 import io.papermc.paper.event.player.AsyncChatEvent
 import org.bukkit.event.EventHandler
@@ -21,5 +22,6 @@ class MessageListener(val plugin: JavaPlugin) : Listener {
     ).forEach {
       if (it.key.test()) MessageSender.sendAndCancelEvent(event, event.player, it.value)
     }
+    SessionManager.get(event.player.uniqueId).lastSuccessfulChatMessage = System.currentTimeMillis()
   }
 }
