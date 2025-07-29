@@ -16,7 +16,7 @@ object BlockedWordsAccessor {
 
   var config: FileConfiguration = NullFileConfiguration
     get() {
-      if (config is NullFileConfiguration) reloadConfig()
+      if (field is NullFileConfiguration) reloadConfig()
       return field
     }
 

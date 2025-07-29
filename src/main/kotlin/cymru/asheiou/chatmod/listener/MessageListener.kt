@@ -20,7 +20,10 @@ class MessageListener(val plugin: JavaPlugin) : Listener {
       LetterSpamCheck(plugin, event, "letterspam") to "Too many repeated letters!",
       WordCheck(event) to "Blocked word detected!"
     ).forEach {
-      if (it.key.test()) MessageSender.sendAndCancelEvent(event, event.player, it.value)
+      if (it.key.test()) {
+        plugin.logger.info("Cancelling message due to: ${it.key.javaClass.simpleName} failure")
+        MessageSender.sendAndCancelEvent(event, event.player, it.value)
+      }
     }
     SessionManager.get(event.player.uniqueId).lastSuccessfulChatMessage = System.currentTimeMillis()
   }
