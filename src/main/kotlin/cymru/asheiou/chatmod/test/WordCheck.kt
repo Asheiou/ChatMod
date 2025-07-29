@@ -4,7 +4,7 @@ import cymru.asheiou.chatmod.accessor.BlockedWordsAccessor
 import io.papermc.paper.event.player.AsyncChatEvent
 
 class WordCheck(event: AsyncChatEvent) : ChatCheck(event) {
-  val blockedWords = BlockedWordsAccessor.config!!.getStringList("words")
+  var blockedWords = BlockedWordsAccessor.config!!.getStringList("words")
   override fun test(): Boolean {
     blockedWords.forEach {
       val regex = it.toRegex()

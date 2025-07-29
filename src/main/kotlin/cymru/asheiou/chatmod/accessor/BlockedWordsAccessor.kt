@@ -11,13 +11,15 @@ import java.util.*
 
 object BlockedWordsAccessor {
   var configFile: File? = null
+  var configInternal: FileConfiguration? = null
+
   var config: FileConfiguration?
     get() {
-      if (config == null) reloadConfig()
-      return config
+      if (configInternal == null) reloadConfig()
+      return configInternal
     }
     set(value) {
-      config = value
+      configInternal = value
     }
 
   lateinit var plugin: JavaPlugin
@@ -29,7 +31,7 @@ object BlockedWordsAccessor {
     config = YamlConfiguration.loadConfiguration(configFile!!)
     var defConfigStream: Reader? = null
     try {
-      defConfigStream = InputStreamReader(Objects.requireNonNull<InputStream>(plugin.getResource("servers.yml")))
+      defConfigStream = InputStreamReader(Objects.requireNonNull<InputStream>(plugin.getResource("blocked-words.yml")))
     } catch (_: NullPointerException) {
       plugin.logger.warning("Could not load internal blocked-words.yml! Please check your build.")
     }
