@@ -5,7 +5,7 @@ import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import org.bukkit.plugin.java.JavaPlugin
 import java.text.Normalizer
 
-class LetterSpamTest(val plugin: JavaPlugin, event: AsyncChatEvent, permission: String) : ChatTest(event, permission) {
+class LetterSpamCheck(val plugin: JavaPlugin, event: AsyncChatEvent, permission: String) : ChatCheck(event, permission) {
   override fun test(): Boolean {
     if(hasPermission) return false
     var lastLetter: Char? = null

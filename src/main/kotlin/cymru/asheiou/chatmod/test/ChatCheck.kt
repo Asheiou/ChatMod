@@ -4,7 +4,7 @@ import cymru.asheiou.chatmod.exception.NoPermissionException
 import io.papermc.paper.event.player.AsyncChatEvent
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 
-abstract class ChatTest(val event: AsyncChatEvent, val permission: String? = null) {
+abstract class ChatCheck(val event: AsyncChatEvent, val permission: String? = null) {
   abstract fun test(): Boolean
 
   val messagePrepped: String = run {

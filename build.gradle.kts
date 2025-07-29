@@ -24,6 +24,12 @@ dependencies {
   compileOnly("io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT")
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   implementation("cymru.asheiou:configmanager:1.2.1")
+  testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
+  testImplementation("org.slf4j:slf4j-simple:2.0.7")
+  testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:2.2.0")
+  testImplementation("org.mockito:mockito-core:4.5.1")
+  testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+  testImplementation("org.mockbukkit.mockbukkit:mockbukkit-v1.21:4.72.5")
 }
 
 tasks {
@@ -50,5 +56,12 @@ tasks.processResources {
   filteringCharset = "UTF-8"
   filesMatching("plugin.yml") {
     expand(props)
+  }
+}
+
+tasks.test {
+  useJUnitPlatform()
+  filter {
+    includeTestsMatching("*Test")
   }
 }

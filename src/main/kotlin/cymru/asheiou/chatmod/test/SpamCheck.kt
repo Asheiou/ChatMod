@@ -4,7 +4,7 @@ import cymru.asheiou.chatmod.session.SessionManager
 import io.papermc.paper.event.player.AsyncChatEvent
 import org.bukkit.plugin.java.JavaPlugin
 
-class SpamTest(val plugin: JavaPlugin, event: AsyncChatEvent, permission: String) : ChatTest(event, permission) {
+class SpamCheck(val plugin: JavaPlugin, event: AsyncChatEvent, permission: String) : ChatCheck(event, permission) {
   override fun test(): Boolean {
     if (hasPermission) return false
     val now = System.currentTimeMillis()

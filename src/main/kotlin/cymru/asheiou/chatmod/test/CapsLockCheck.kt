@@ -4,7 +4,7 @@ import io.papermc.paper.event.player.AsyncChatEvent
 import org.bukkit.plugin.java.JavaPlugin
 import kotlin.math.ceil
 
-class CapsLockTest(val plugin: JavaPlugin, event: AsyncChatEvent, permission: String) : ChatTest(event, permission) {
+class CapsLockCheck(val plugin: JavaPlugin, event: AsyncChatEvent, permission: String) : ChatCheck(event, permission) {
   override fun test() : Boolean {
     if (hasPermission) return false
     if (messagePrepped.length < plugin.config.getInt("caps-minimum-length")) return false

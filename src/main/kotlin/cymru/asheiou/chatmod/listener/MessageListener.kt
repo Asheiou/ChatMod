@@ -14,10 +14,10 @@ class MessageListener(val plugin: JavaPlugin) : Listener {
   fun onAsyncChatEvent(event: AsyncChatEvent) {
     if (event.isCancelled) return
     mapOf(
-      CapsLockTest(plugin, event, "caps") to "Too many caps!",
-      SpamTest(plugin, event, "spam") to "Too many messages in a short time! Please try again in a few seconds.",
-      LetterSpamTest(plugin, event, "letterspam") to "Too many repeated letters!",
-      WordTest(event) to "Blocked word detected!"
+      CapsLockCheck(plugin, event, "caps") to "Too many caps!",
+      SpamCheck(plugin, event, "spam") to "Too many messages in a short time! Please try again in a few seconds.",
+      LetterSpamCheck(plugin, event, "letterspam") to "Too many repeated letters!",
+      WordCheck(event) to "Blocked word detected!"
     ).forEach {
       if (it.key.test()) MessageSender.sendAndCancelEvent(event, event.player, it.value)
     }
