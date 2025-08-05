@@ -8,7 +8,7 @@ class CapsLockCheck(val plugin: JavaPlugin, event: AsyncChatEvent, permission: S
   override fun test() : Boolean {
     if (hasPermission) return false
     if (messagePrepped.length < plugin.config.getInt("caps-minimum-length")) return false
-    val thresholdDecimal = plugin.config.getInt("threshold") / 100.toDouble()
+    val thresholdDecimal = plugin.config.getInt("caps-threshold") / 100.toDouble()
     val thresholdLength = ceil(messagePrepped.length * thresholdDecimal)
     var capsFound = 0
     messagePrepped.forEach {
