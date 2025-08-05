@@ -1,8 +1,11 @@
 package cymru.asheiou.chatmod.listener
 
+import cymru.asheiou.chatmod.check.CapsLockCheck
+import cymru.asheiou.chatmod.check.LetterSpamCheck
+import cymru.asheiou.chatmod.check.SpamCheck
+import cymru.asheiou.chatmod.check.WordCheck
 import cymru.asheiou.chatmod.sender.MessageSender
 import cymru.asheiou.chatmod.session.SessionManager
-import cymru.asheiou.chatmod.check.*
 import io.papermc.paper.event.player.AsyncChatEvent
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -14,15 +17,17 @@ class MessageListener(val plugin: JavaPlugin) : Listener {
   @EventHandler(priority = EventPriority.HIGH)
   fun onAsyncChatEvent(event: AsyncChatEvent) {
     if (event.isCancelled) return
-    mapOf(
+    val checks = mapOf(
       CapsLockCheck(plugin, event, "caps") to "Too many caps!",
       SpamCheck(plugin, event, "spam") to "Too many messages in a short time! Please try again in a few seconds.",
       LetterSpamCheck(plugin, event, "letterspam") to "Too many repeated letters!",
       WordCheck(event, "word") to "Blocked word detected!"
-    ).forEach {
-      if (it.key.test()) {
-        plugin.logger.info("Cancelling message due to: ${it.key.javaClass.simpleName} failure")
-        MessageSender.sendAndCancelEvent(event, event.player, it.value)
+    )
+    for ((check, message) in checks) {
+      if (check.test()) {
+        plugin.logger.info("Cancelling message due to: ${check.javaClass.simpleName} failure")
+        MessageSender.sendAndCancelEvent(event, event.player, message)
+        return
       }
     }
     SessionManager.get(event.player.uniqueId).lastSuccessfulChatMessage = System.currentTimeMillis()
