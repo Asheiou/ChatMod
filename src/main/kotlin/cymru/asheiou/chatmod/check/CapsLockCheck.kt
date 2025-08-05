@@ -10,9 +10,8 @@ class CapsLockCheck(val plugin: JavaPlugin, event: AsyncChatEvent, permission: S
     if (messagePrepped.length < plugin.config.getInt("caps-minimum-length")) return false
     val thresholdDecimal = plugin.config.getInt("caps-threshold") / 100.toDouble()
     val thresholdLength = ceil(messagePrepped.length * thresholdDecimal)
-    var capsFound = 0
-    messagePrepped.forEach {
-      if (it.isUpperCase()) capsFound++
+    val capsFound = messagePrepped.count {
+      it.isUpperCase()
     }
     return capsFound >= thresholdLength
   }
