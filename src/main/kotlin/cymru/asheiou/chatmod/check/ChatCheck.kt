@@ -1,14 +1,19 @@
 package cymru.asheiou.chatmod.check
 
 import cymru.asheiou.chatmod.exception.NoPermissionException
+import cymru.asheiou.chatmod.plaintext
+import cymru.asheiou.chatmod.strip
 import io.papermc.paper.event.player.AsyncChatEvent
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 
 abstract class ChatCheck(val event: AsyncChatEvent, val permission: String? = null) {
   abstract fun test(): Boolean
 
-  val messagePrepped: String = run {
-    PlainTextComponentSerializer.plainText().serialize(event.message()).replace(" ", "")
+  val message: String by lazy {
+    event.message().plaintext()
+  }
+
+  val messagePrepped: String by lazy {
+    message.strip()
   }
 
   val hasPermission: Boolean by lazy {
