@@ -9,7 +9,7 @@ class SpamCheck(val plugin: JavaPlugin, event: AsyncChatEvent, permission: Strin
     if (hasPermission) return false
     val now = System.currentTimeMillis()
     val session = SessionManager.get(event.player.uniqueId)
-    val spamCooldown = plugin.config.getLong("tests.spam-cooldown")
+    val spamCooldown = plugin.config.getLong("tests.spam-cooldown") * 1000L
     if ((now - session.lastSuccessfulChatMessage) > spamCooldown) {
       session.spamCount = 0
       return false
