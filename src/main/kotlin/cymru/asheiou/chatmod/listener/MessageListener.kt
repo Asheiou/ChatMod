@@ -2,7 +2,7 @@ package cymru.asheiou.chatmod.listener
 
 import cymru.asheiou.chatmod.sender.MessageSender
 import cymru.asheiou.chatmod.session.SessionManager
-import cymru.asheiou.chatmod.test.*
+import cymru.asheiou.chatmod.check.*
 import io.papermc.paper.event.player.AsyncChatEvent
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -18,7 +18,7 @@ class MessageListener(val plugin: JavaPlugin) : Listener {
       CapsLockCheck(plugin, event, "caps") to "Too many caps!",
       SpamCheck(plugin, event, "spam") to "Too many messages in a short time! Please try again in a few seconds.",
       LetterSpamCheck(plugin, event, "letterspam") to "Too many repeated letters!",
-      WordCheck(event) to "Blocked word detected!"
+      WordCheck(event, "word") to "Blocked word detected!"
     ).forEach {
       if (it.key.test()) {
         plugin.logger.info("Cancelling message due to: ${it.key.javaClass.simpleName} failure")
