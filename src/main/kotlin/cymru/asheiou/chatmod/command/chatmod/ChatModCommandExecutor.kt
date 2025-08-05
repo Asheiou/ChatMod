@@ -21,6 +21,7 @@ class ChatModCommandExecutor(val cm: ChatMod) : CommandExecutor {
     args: Array<out String>
   ): Boolean {
     if(args.isEmpty()){
+      @Suppress("DEPRECATION")
       MessageSender.sendMessage(sender, "ChatMod v${cm.description.version} enabled.")
     }
     subCommands.forEach {
