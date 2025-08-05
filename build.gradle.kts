@@ -24,6 +24,7 @@ dependencies {
   compileOnly("io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT")
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   implementation("cymru.asheiou:configmanager:1.2.1")
+  implementation("org.bstats:bstats-bukkit:3.0.2")
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
   testImplementation("org.slf4j:slf4j-simple:2.0.7")
   testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:2.2.0")
@@ -77,4 +78,5 @@ tasks.shadowJar {
   relocate("org.intellij", "cymru.asheiou.chatmod.shade.intellij")
   relocate("org.jetbrains", "cymru.asheiou.chatmod.shade.jetbrains")
   relocate("cymru.asheiou.configmanager", "cymru.asheiou.shade.chatmod.configmanager")
+  relocate("org.bstats", "cymru.asheiou.chatmod.shade.shade.bstats")
 }

@@ -6,6 +6,7 @@ import cymru.asheiou.chatmod.command.chatmod.ChatModCommandExecutor
 import cymru.asheiou.chatmod.listener.MessageListener
 import cymru.asheiou.chatmod.listener.SessionListener
 import cymru.asheiou.configmanager.ConfigManager
+import org.bstats.bukkit.Metrics
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -30,6 +31,7 @@ open class ChatMod : JavaPlugin() {
     pm.registerEvents(MessageListener(this), this)
     pm.registerEvents(SessionListener(), this)
     getCommand("chatmod")?.setExecutor(ChatModCommandExecutor(this))
+    val metrics = Metrics(this, 26801)
     logger.info("${GREEN}Load complete!$WHITE")
   }
 
