@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable
 
 object MessageSender {
   fun sendMessage(recipient: Audience, message: String, prefix: Boolean = true) {
-    val compose = (if (prefix) "<yellow>[Automod]</yellow> " else "") + message
+    val compose = (if (prefix) "<yellow>[ChatMod]</yellow> " else "") + message
     recipient.sendMessage(MiniMessage.miniMessage().deserialize(compose))
   }
 
