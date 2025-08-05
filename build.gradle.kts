@@ -58,7 +58,7 @@ tasks.processResources {
     expand(props)
   }
   val projectVer = project.version
-  filesMatching("*.{txt,yml}") {
+  filesMatching(listOf("**/*.yml", "**/*.txt")) {
     filter {
       it.replace("%%VER", projectVer.toString())
     }
@@ -70,4 +70,11 @@ tasks.test {
   filter {
     includeTestsMatching("*Test")
   }
+}
+
+tasks.shadowJar {
+  relocate("kotlin", "cymru.asheiou.chatmod.shade.kotlin")
+  relocate("org.intellij", "cymru.asheiou.chatmod.shade.intellij")
+  relocate("org.jetbrains", "cymru.asheiou.chatmod.shade.jetbrains")
+  relocate("cymru.asheiou.configmanager", "cymru.asheiou.shade.chatmod.configmanager")
 }
