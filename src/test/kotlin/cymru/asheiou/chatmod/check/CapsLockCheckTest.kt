@@ -18,8 +18,8 @@ class CapsLockCheckTest {
     server = MockBukkit.mock()
     plugin = MockBukkit.load(ChatMod::class.java)
 
-    plugin.config.set("caps-minimum-length", 5)
-    plugin.config.set("caps-threshold", 50)
+    plugin.config.set("tests.caps-minimum-length", 5)
+    plugin.config.set("tests.caps-threshold", 50)
   }
 
   @AfterEach

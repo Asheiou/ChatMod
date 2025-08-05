@@ -7,8 +7,8 @@ import kotlin.math.ceil
 class CapsLockCheck(val plugin: JavaPlugin, event: AsyncChatEvent, permission: String) : ChatCheck(event, permission) {
   override fun test() : Boolean {
     if (hasPermission) return false
-    if (messagePrepped.length < plugin.config.getInt("caps-minimum-length")) return false
-    val thresholdDecimal = plugin.config.getInt("caps-threshold") / 100.toDouble()
+    if (messagePrepped.length < plugin.config.getInt("tests.caps-minimum-length")) return false
+    val thresholdDecimal = plugin.config.getInt("tests.caps-threshold") / 100.toDouble()
     val thresholdLength = ceil(messagePrepped.length * thresholdDecimal)
     val capsFound = messagePrepped.count {
       it.isUpperCase()
