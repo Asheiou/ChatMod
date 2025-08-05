@@ -57,6 +57,12 @@ tasks.processResources {
   filesMatching("plugin.yml") {
     expand(props)
   }
+  val projectVer = project.version
+  filesMatching("*.{txt,yml}") {
+    filter {
+      it.replace("%%VER", projectVer.toString())
+    }
+  }
 }
 
 tasks.test {

@@ -1,5 +1,5 @@
 name: ChatMod
-version: '1.0-SNAPSHOT'
+version: '%%VER'
 main: cymru.asheiou.chatmod.ChatMod
 api-version: '1.21'
 commands:
@@ -17,4 +17,6 @@ permissions:
   chatmod.exempt.spam:
     default: false
   chatmod.exempt.letterspam:
+    default: false
+  chatmod.exempt.word:
     default: false
