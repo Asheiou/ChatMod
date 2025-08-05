@@ -1,9 +1,7 @@
-package cymru.asheiou.chatmod.test
+package cymru.asheiou.chatmod.check
 
 import cymru.asheiou.chatmod.ChatMod
 import cymru.asheiou.chatmod.EventCreator
-import cymru.asheiou.chatmod.accessor.BlockedWordsAccessor
-import org.bukkit.block.Block
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -29,18 +27,18 @@ class WordCheckTest {
   @Test
   fun `blocked word`() {
     val event = EventCreator.createAsyncChatEvent("faggot", server) // I'm gay I can say this
-    assertTrue(WordCheck(event).test())
+    assertTrue(WordCheck(event, "word").test())
   }
 
   @Test
   fun `blocked word word boundary`() {
     val event = EventCreator.createAsyncChatEvent("a fa ggot", server)
-    assertTrue(WordCheck(event).test())
+    assertTrue(WordCheck(event, "word").test())
   }
 
   @Test
   fun `allowed message`() {
     val event = EventCreator.createAsyncChatEvent("allowed message", server)
-    assertFalse(WordCheck(event).test())
+    assertFalse(WordCheck(event, "word").test())
   }
 }

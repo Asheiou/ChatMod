@@ -1,16 +1,13 @@
-package cymru.asheiou.chatmod.test
+package cymru.asheiou.chatmod.check
 
 import cymru.asheiou.chatmod.ChatMod
 import cymru.asheiou.chatmod.EventCreator
-import jdk.jfr.Event
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockbukkit.mockbukkit.MockBukkit
 import org.mockbukkit.mockbukkit.ServerMock
-import org.mockbukkit.mockbukkit.plugin.PluginMock
 
 class CapsLockCheckTest {
   lateinit var server: ServerMock

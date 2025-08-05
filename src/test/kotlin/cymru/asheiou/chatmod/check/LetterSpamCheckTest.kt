@@ -1,4 +1,4 @@
-package cymru.asheiou.chatmod.test
+package cymru.asheiou.chatmod.check
 
 import cymru.asheiou.chatmod.ChatMod
 import cymru.asheiou.chatmod.EventCreator

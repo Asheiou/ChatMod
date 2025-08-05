@@ -1,4 +1,4 @@
-package cymru.asheiou.chatmod.test
+package cymru.asheiou.chatmod.check
 
 import cymru.asheiou.chatmod.exception.NoPermissionException
 import io.papermc.paper.event.player.AsyncChatEvent

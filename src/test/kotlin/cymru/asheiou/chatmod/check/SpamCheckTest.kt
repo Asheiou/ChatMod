@@ -1,10 +1,9 @@
-package cymru.asheiou.chatmod.test
+package cymru.asheiou.chatmod.check
 
 import cymru.asheiou.chatmod.ChatMod
 import cymru.asheiou.chatmod.EventCreator
 import cymru.asheiou.chatmod.session.Session
 import cymru.asheiou.chatmod.session.SessionManager
-import org.bukkit.entity.Player
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach

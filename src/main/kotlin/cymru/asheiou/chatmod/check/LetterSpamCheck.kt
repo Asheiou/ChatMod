@@ -1,4 +1,4 @@
-package cymru.asheiou.chatmod.test
+package cymru.asheiou.chatmod.check
 
 import io.papermc.paper.event.player.AsyncChatEvent
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
