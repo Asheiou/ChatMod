@@ -38,8 +38,8 @@ open class ChatMod : JavaPlugin() {
   }
 
   companion object {
-    const val AQUA = "\u001B36m"
-    const val WHITE = "\u001B37m"
-    const val GREEN = "\u001B32m"
+    const val AQUA = "\u001B[36m"
+    const val WHITE = "\u001B[37m"
+    const val GREEN = "\u001B[32m"
   }
 }
