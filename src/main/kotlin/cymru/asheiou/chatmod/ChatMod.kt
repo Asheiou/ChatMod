@@ -31,7 +31,7 @@ open class ChatMod : JavaPlugin() {
     pm.registerEvents(MessageListener(this), this)
     pm.registerEvents(SessionListener(), this)
     getCommand("chatmod")?.setExecutor(ChatModCommandExecutor(this))
-    val metrics = Metrics(this, 26801)
+    Metrics(this, 26801)
     logger.info("${GREEN}Load complete!$WHITE")
   }
 
