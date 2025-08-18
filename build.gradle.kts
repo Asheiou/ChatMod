@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "cymru.asheiou"
-version = "1.0"
+version = "1.0.1"
 
 repositories {
   mavenCentral()
@@ -22,7 +22,7 @@ repositories {
 
 dependencies {
   compileOnly("io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT")
-  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+  compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   implementation("cymru.asheiou:configmanager:1.2.1")
   implementation("org.bstats:bstats-bukkit:3.0.2")
   testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
@@ -74,9 +74,6 @@ tasks.test {
 }
 
 tasks.shadowJar {
-  relocate("kotlin", "cymru.asheiou.chatmod.shade.kotlin")
-  relocate("org.intellij", "cymru.asheiou.chatmod.shade.intellij")
-  relocate("org.jetbrains", "cymru.asheiou.chatmod.shade.jetbrains")
   relocate("cymru.asheiou.configmanager", "cymru.asheiou.shade.chatmod.configmanager")
   relocate("org.bstats", "cymru.asheiou.chatmod.shade.shade.bstats")
 }

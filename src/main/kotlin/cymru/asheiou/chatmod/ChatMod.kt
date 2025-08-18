@@ -16,6 +16,13 @@ open class ChatMod : JavaPlugin() {
 
   override fun onEnable() {
     logger.info("Load started.")
+    try {
+      Class.forName("kotlin.Unit")
+      logger.info("Kotlin stdlib located.")
+    } catch (_: ClassNotFoundException) {
+      logger.info("Kotlin stdlib could not be found, please install KotKit!")
+      Bukkit.getPluginManager().disablePlugin(this)
+    }
     BlockedWordsAccessor.plugin = this
     BlockedWordsAccessor.saveDefaultConfig()
     if (readmeAccessor.init()) {
